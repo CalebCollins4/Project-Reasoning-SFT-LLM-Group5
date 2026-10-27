@@ -1,0 +1,19 @@
+{
+  "maxtok": 6044,
+  "clusters": 100,
+  "target": 15000,
+  "rep_max": 0.05,
+  "drop_shortest_fraction_per_cluster": 0.3,
+  "overthink_drop_fraction": 0.15,
+  "seed": 42,
+  "after_basic_filters": 28683,
+  "after_dedup": 25892,
+  "after_overthink_filter": 22008,
+  "selected": 15000,
+  "tokens_median": 3824,
+  "tokens_mean": 3789,
+  "tokens_max": 6044,
+  "tokens_total_millions": 56.8,
+  "candidate_tokens_median": 3341,
+  "clusters_used": 100
+}
