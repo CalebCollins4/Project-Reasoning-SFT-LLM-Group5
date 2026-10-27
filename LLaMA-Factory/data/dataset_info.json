@@ -714,5 +714,14 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "advanced15k_v5": {
+    "file_name": "advanced15k_v5.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
   }
 }
