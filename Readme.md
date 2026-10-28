@@ -37,18 +37,22 @@ The experiments use **LLaMA-Factory** for supervised fine-tuning and evaluate re
 
 ## Training and evaluation setup
 
-| Setting | Advanced15K V5 |
-|---|---|
-| Base model | Qwen2.5-3B-Instruct |
-| Training dataset | 15,000 selected examples (`advanced15k_v5.json`) |
-| Fine-tuning | LoRA via LLaMA-Factory |
-| LoRA rank / alpha / dropout | 64 / 128 / 0.05 |
-| Training epochs | 2 |
-| Training precision | BF16 |
-| Evaluation temperature / top-p | 0.6 / 0.95 |
-| Samples per question | 8 |
-| Maximum generated tokens | 32,768 |
-| Compute | Virginia Tech ARC Falcon |
+| Setting | Random15K | Advanced15K V5 |
+|---|---|---|
+| Base model | Qwen2.5-3B-Instruct | Qwen2.5-3B-Instruct |
+| Training dataset | 15,000 random examples, seed 42 (`random15k.json`) | 15,000 selected examples (`advanced15k_v5.json`) |
+| Fine-tuning | Full fine-tuning via LLaMA-Factory (DeepSpeed ZeRO-3) | LoRA via LLaMA-Factory |
+| LoRA rank / alpha / dropout | — | 64 / 128 / 0.05 |
+| Learning rate | 5e-6 (cosine) | 1e-4 (cosine) |
+| Max training sequence length | 4,096 | 6,144 |
+| Training epochs | 1 | 2 |
+| Training precision | BF16 | BF16 |
+| Evaluation temperature / top-p | 0.6 / 0.95 | 0.6 / 0.95 |
+| Samples per question | 8 | 8 |
+| Maximum generated tokens | 32,768 | 32,768 |
+| Compute | Virginia Tech ARC Falcon (4× A30) | Virginia Tech ARC Falcon |
+
+Details for each run: [`results/random15k.md`](results/random15k.md), [`results/advanced15k_v5.md`](results/advanced15k_v5.md), and the baseline in [`results/baseline_qwen2.5-3b-instruct.md`](results/baseline_qwen2.5-3b-instruct.md).
 
 ## Repository and artifacts
 
@@ -56,6 +60,7 @@ The experiments use **LLaMA-Factory** for supervised fine-tuning and evaluate re
 - **Experiment scripts and configurations:** See the `scripts/`, `eval/`, and `LLaMA-Factory/` directories, where available in this fork.
 - **Team report:** *TML Midterm Report* (Fall 2026).
 - **Hugging Face organization:** [TML-Project1](https://huggingface.co/TML-Project1) — hosts the team’s datasets, fine-tuned models, and other published artifacts. Large model weights and training datasets are not included in this Git repository.
+- **Random15K:** model [TML-Project1/qwen25-3b-random15k](https://huggingface.co/TML-Project1/qwen25-3b-random15k), dataset [TML-Project1/acereason-random15k](https://huggingface.co/datasets/TML-Project1/acereason-random15k). Built by `scripts/make_random15k.py`, trained with `scripts/train_random15k.slurm` and `LLaMA-Factory/examples/train_full/random15k.yaml`.
 
 ## Key takeaway
 
